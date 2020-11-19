@@ -92,12 +92,17 @@ public class MenuButton : MonoBehaviour
 
     public void InstructionButtonClicked()
 	{
-        Instantiate(Resources.Load("Prefabs/InstructionsPanel"));
+        Instantiate(Resources.Load("Prefabs/InstructionsPanel"), GetComponentInParent<Canvas>().gameObject.transform);
     }
 
     public void CloseInstructionButton()
 	{
-        Destroy(GetComponentInParent<Image>().gameObject);
+        var images = GetComponentsInParent<Image>();
+        foreach(var i in images)
+        {
+            Destroy(i.gameObject);
+
+        }
 	}
 
 }
