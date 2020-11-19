@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class MenuButton : MonoBehaviour
 {
+    [SerializeField] GameObject content = null;
+
     Sprite volumeOnSprite = null;
     Sprite volumeOffSprite = null;
 
@@ -17,6 +19,7 @@ public class MenuButton : MonoBehaviour
     private bool volumeOn = true;
     private bool isPaused = false;
 
+    static int playerNumber = 1;
     void Start()
     {
         button = GetComponent<Button>();
@@ -45,7 +48,7 @@ public class MenuButton : MonoBehaviour
 
     public void LeaderBoardButtonClicked()
     {
-
+        Instantiate(Resources.Load("Prefabs/LeaderboardPanel"), GetComponentInParent<Canvas>().gameObject.transform);
     }
 
     public void EasyButtonClicked()
@@ -95,7 +98,7 @@ public class MenuButton : MonoBehaviour
         Instantiate(Resources.Load("Prefabs/InstructionsPanel"), GetComponentInParent<Canvas>().gameObject.transform);
     }
 
-    public void CloseInstructionButton()
+    public void ClosePopupButton()
 	{
         var images = GetComponentsInParent<Image>();
         foreach(var i in images)
@@ -103,6 +106,21 @@ public class MenuButton : MonoBehaviour
             Destroy(i.gameObject);
 
         }
+
+        playerNumber = 1;
+
 	}
+
+    public void AddPlayerClick()
+    {
+        GameObject go = Instantiate(Resources.Load<GameObject>("Prefabs/PlayerScore"), content.transform);
+        PlayerScore ps = go.GetComponent<PlayerScore>();
+        if(ps)
+        {
+            ps.SetInfo(playerNumber, "Name Number " + playerNumber, playerNumber * 100);
+
+            playerNumber++;
+        }
+    }
 
 }
