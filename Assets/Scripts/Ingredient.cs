@@ -20,18 +20,35 @@ public class Ingredient : MonoBehaviour
 
     public Type ingredientType;
 
+    [HideInInspector] public Vector3 stackedOffset = Vector3.zero;
+
+    private void Update()
+    {
+        if (stackedOffset != Vector3.zero)
+        {
+            transform.localPosition = stackedOffset;
+        }
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.GetComponent<Ingredient>() != null)
+        GameObject collidedObject = collision.gameObject;
+        Ingredient ingredient = collidedObject.GetComponent<Ingredient>();
+        BoxCollider2D boxCollider = collidedObject.GetComponent<BoxCollider2D>();
+
+        //Make sure collision is above
+        if (collidedObject.transform.position.y - boxCollider.bounds.extents.y >= this.transform.position.y + this.GetComponent<BoxCollider2D>().bounds.extents.y)
         {
-            if (GetComponent<BoxCollider2D>() != null)
+            if (Mathf.Abs(transform.position.x - collidedObject.transform.position.x) < this.GetComponent<BoxCollider2D>().bounds.extents.x + 0.1f)
             {
-                if (Mathf.Abs(transform.position.x - collision.transform.position.x) < GetComponent<BoxCollider2D>().bounds.extents.x + 0.1f)
-                {
-                    collision.transform.parent = this.transform;
-                    Destroy(collision.gameObject.GetComponent<Rigidbody2D>());
-                    Destroy(GetComponent<BoxCollider2D>());
-                }
+                collidedObject.transform.parent = this.transform;
+                ingredient.stackedOffset = collidedObject.transform.localPosition;
+                collidedObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePositionY;
+                Destroy(this.GetComponent<BoxCollider2D>());
+            }
+            else
+            {
+                collidedObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
             }
         }
     }
