@@ -36,18 +36,13 @@ public class ChefController : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<Ingredient>() != null)
         {
-            Vector2 direction = collision.GetContact(0).normal;
-            if (direction.y == -1)
+            if (GetComponent<BoxCollider2D>() != null)
             {
-                if (GetComponent<BoxCollider2D>() != null)
+                if (Mathf.Abs(transform.position.x - collision.transform.position.x) < GetComponent<BoxCollider2D>().bounds.extents.x + 0.1f)
                 {
-                    if (Mathf.Abs(transform.position.x - collision.transform.position.x) < GetComponent<BoxCollider2D>().bounds.extents.x + 0.1f)
-                    {
-                        collision.transform.parent = this.transform;
-                        collision.transform.rotation = Quaternion.identity;
-                        Destroy(collision.gameObject.GetComponent<Rigidbody2D>());
-                        Destroy(GetComponent<BoxCollider2D>());
-                    }
+                    collision.transform.parent = this.transform;
+                    Destroy(collision.gameObject.GetComponent<Rigidbody2D>());
+                    Destroy(GetComponent<BoxCollider2D>());
                 }
             }
         }
