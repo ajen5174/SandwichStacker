@@ -44,7 +44,7 @@ public class Ingredient : MonoBehaviour
                 collidedObject.transform.parent = this.transform;
                 ingredient.stackedOffset = collidedObject.transform.localPosition;
                 collidedObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePositionY;
-                Destroy(this.GetComponent<BoxCollider2D>());
+                this.GetComponent<BoxCollider2D>().enabled = false;
             }
             else
             {

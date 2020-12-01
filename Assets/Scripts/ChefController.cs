@@ -39,6 +39,7 @@ public class ChefController : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Space))
         {
             CalculateScore();
+
         }
     }
 
@@ -61,8 +62,10 @@ public class ChefController : MonoBehaviour
 
         for (int i = 0; i < stackedIngredients.Count; i++)
         {
-            
+            Destroy(stackedIngredients[i].gameObject);
         }
+
+        this.GetComponent<BoxCollider2D>().enabled = true;
 
         return score;
     }
@@ -94,7 +97,7 @@ public class ChefController : MonoBehaviour
                 collidedObject.transform.parent = this.transform;
                 ingredient.stackedOffset = collidedObject.transform.localPosition;
                 collidedObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePositionY;
-                Destroy(this.GetComponent<BoxCollider2D>());
+                this.GetComponent<BoxCollider2D>().enabled = false;
             }
             else
             {
