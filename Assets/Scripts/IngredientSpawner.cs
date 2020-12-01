@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class IngredientSpawner : MonoBehaviour
 {
-    [SerializeField] Ingredient[] ingredients;
+    [SerializeField] public Ingredient[] ingredients;
     [SerializeField] float spawnSpeed = 2f;
     float spawnTimer = 0f;
 

@@ -54,6 +54,7 @@ public class MenuButton : MonoBehaviour
     public void EasyButtonClicked()
     {
         Screen.orientation = ScreenOrientation.LandscapeLeft;
+        Difficulty.difficulty = Difficulty.Level.EASY;
         SceneManager.LoadScene("GameScene");
 
     }
@@ -61,6 +62,7 @@ public class MenuButton : MonoBehaviour
     public void MediumButtonClicked()
     {
         Screen.orientation = ScreenOrientation.LandscapeLeft;
+        Difficulty.difficulty = Difficulty.Level.MEDIUM;
         SceneManager.LoadScene("GameScene");
 
     }
@@ -68,6 +70,7 @@ public class MenuButton : MonoBehaviour
     public void HardButtonClicked()
     {
         Screen.orientation = ScreenOrientation.LandscapeLeft;
+        Difficulty.difficulty = Difficulty.Level.HARD;
         SceneManager.LoadScene("GameScene");
 
     }
