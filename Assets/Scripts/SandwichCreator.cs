@@ -27,7 +27,7 @@ public class SandwichCreator : MonoBehaviour
 
         ingredientGoal.Add(Ingredient.Type.BREAD);
         //random stuff
-        int numIngredients = 3;// Random.Range(3, 6);
+        int numIngredients = Random.Range(3, 6);
         for (int i = 0; i < numIngredients; i++)
         {
             Ingredient.Type ingredient = (Ingredient.Type)Random.Range(1, ((int)Ingredient.Type.CHEESE) + 1);
@@ -59,7 +59,7 @@ public class SandwichCreator : MonoBehaviour
             }
             //this height might need to be calculated in a different way if the height of each prefab ends up different.
 
-            go.transform.position += new Vector3(0, i * 50, 0);
+            go.transform.position += new Vector3(0, i * 90, 0);
 
         }
     }
