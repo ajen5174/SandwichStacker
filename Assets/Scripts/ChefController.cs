@@ -27,7 +27,7 @@ public class ChefController : MonoBehaviour
             dirX = Input.GetAxis("Horizontal") * moveSpeed;
         }
 
-        transform.position = new Vector2(Mathf.Clamp(transform.position.x, -7.5f, 7.5f), transform.position.y);
+        transform.position = new Vector2(Mathf.Clamp(transform.position.x, -5f, 5f), transform.position.y);
 
 
         // Check for sandwich completion
