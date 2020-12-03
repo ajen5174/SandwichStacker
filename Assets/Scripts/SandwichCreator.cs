@@ -30,11 +30,11 @@ public class SandwichCreator : MonoBehaviour
         int numIngredients = Random.Range(3, 6);
         for (int i = 0; i < numIngredients; i++)
         {
-            Ingredient.Type ingredient = (Ingredient.Type)Random.Range(1, ((int)Ingredient.Type.CHEESE) + 1);
+            Ingredient.Type ingredient = (Ingredient.Type)Random.Range(1, ((int)Ingredient.Type.TOP_BREAD) + 1);
 
             ingredientGoal.Add(ingredient);
         }
-        ingredientGoal.Add(Ingredient.Type.BREAD);
+        ingredientGoal.Add(Ingredient.Type.TOP_BREAD);
 
         for(int i = 0; i < ingredientGoal.Count; i++)
         {
