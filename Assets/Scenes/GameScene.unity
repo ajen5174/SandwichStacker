@@ -724,6 +724,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08f8c8d0de1d9524e9938e5f43f2e19c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sandwichCreator: {fileID: 1608986356}
 --- !u!61 &938593277
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1194,6 +1195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b77eeb344208f0d42821e74db2a7f600, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ingredientGoal: 
   panelTransform: {fileID: 1661635866}
   ingredientUI: {fileID: 7951222275595122490, guid: d159e712a94a6fc43adab274684042f1,
     type: 3}
