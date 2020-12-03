@@ -10,12 +10,12 @@ public class Ingredient : MonoBehaviour
         LETTUCE,
         TOMATO,
         ONION,
-        PICKLE,
         BACON,
         BEEF,
-        LUNCHMEAT,
         CHICKEN,
-        CHEESE
+        CHEESE,
+        LUNCHMEAT,
+        PICKLE
     };
 
     public Type ingredientType;
