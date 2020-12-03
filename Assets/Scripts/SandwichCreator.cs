@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class SandwichCreator : MonoBehaviour
 {
-    /*[SerializeField] */List<Ingredient.Type> ingredientGoal = new List<Ingredient.Type>();
+    public List<Ingredient.Type> ingredientGoal = new List<Ingredient.Type>();
     [SerializeField] RectTransform panelTransform = null;
     [SerializeField] GameObject ingredientUI = null;
     IngredientSpawner ingredientSpawner = null;
@@ -16,8 +16,15 @@ public class SandwichCreator : MonoBehaviour
 
     }
 
-    void CreateSandwich()
+    public void CreateSandwich()
     {
+        // Reset things - Gaige
+        ingredientGoal.RemoveRange(0, ingredientGoal.Count);
+        foreach (Transform panelChild in panelTransform.transform)
+        {
+            Destroy(panelChild.gameObject);
+        }
+
         ingredientGoal.Add(Ingredient.Type.BREAD);
         //random stuff
         int numIngredients = Random.Range(3, 6);
