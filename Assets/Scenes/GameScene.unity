@@ -724,6 +724,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08f8c8d0de1d9524e9938e5f43f2e19c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sandwichCreator: {fileID: 1608986356}
 --- !u!61 &938593277
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1167,6 +1168,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredients:
   - {fileID: 3902981343163412211, guid: 069b517616c53264a908c058a69f7f09, type: 3}
+  - {fileID: 3902981343163412211, guid: ad1464317ab47504e809f7088143173e, type: 3}
+  - {fileID: 3902981343163412211, guid: 9f013667885fb544bbf1dee92a4a466d, type: 3}
+  - {fileID: 3902981343163412211, guid: 2d8d4c2c9b3a05548bde6cd4f76df546, type: 3}
+  - {fileID: 3902981343163412211, guid: 6fb7b0fd9918ca0418f98303ab2a4b64, type: 3}
+  - {fileID: 3902981343163412211, guid: 28110078192163243b91b8d0a626522a, type: 3}
+  - {fileID: 3902981343163412211, guid: 0f3397a9578f088478530508cd69cc35, type: 3}
+  - {fileID: 3902981343163412211, guid: f83b65332133d224ba9acb59ebb2669f, type: 3}
   spawnSpeed: 2
 --- !u!4 &1608986355
 Transform:
@@ -1194,6 +1202,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b77eeb344208f0d42821e74db2a7f600, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ingredientGoal: 
   panelTransform: {fileID: 1661635866}
   ingredientUI: {fileID: 7951222275595122490, guid: d159e712a94a6fc43adab274684042f1,
     type: 3}
@@ -1231,8 +1240,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 140, y: -465}
-  m_SizeDelta: {x: 200, y: 300}
+  m_AnchoredPosition: {x: 140, y: -965}
+  m_SizeDelta: {x: 200, y: 800}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1661635867
 MonoBehaviour:

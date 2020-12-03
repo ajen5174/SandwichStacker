@@ -22,6 +22,6 @@ public class IngredientSpawner : MonoBehaviour
     {
         Ingredient ingredient = ingredients[UnityEngine.Random.Range(0, ingredients.Length)];
 
-        Instantiate(ingredient, new Vector3(0, 6), Quaternion.identity);
+        Instantiate(ingredient, new Vector3(UnityEngine.Random.Range(-5f, 5f), 6), Quaternion.identity);
     }
 }

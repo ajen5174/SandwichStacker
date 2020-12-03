@@ -9,6 +9,8 @@ public class ChefController : MonoBehaviour
     float dirZ;
     float moveSpeed = 20f;
 
+    [SerializeField] SandwichCreator sandwichCreator = null;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -25,7 +27,7 @@ public class ChefController : MonoBehaviour
             dirX = Input.GetAxis("Horizontal") * moveSpeed;
         }
 
-        transform.position = new Vector2(Mathf.Clamp(transform.position.x, -7.5f, 7.5f), transform.position.y);
+        transform.position = new Vector2(Mathf.Clamp(transform.position.x, -5f, 5f), transform.position.y);
 
 
         // Check for sandwich completion
@@ -38,8 +40,7 @@ public class ChefController : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.Space))
         {
-            CalculateScore();
-
+            Debug.Log("Score: " + CalculateScore());
         }
     }
 
@@ -54,19 +55,47 @@ public class ChefController : MonoBehaviour
 
         List<Ingredient> stackedIngredients = new List<Ingredient>();
 
+        // Get the list of all ingredients on plate
         if (transform.childCount > 0)
         {
             stackedIngredients.Add(transform.GetChild(0).GetComponent<Ingredient>());
             GetIngredients(transform.GetChild(0), stackedIngredients);
         }
 
+
+        // Calculate score
         for (int i = 0; i < stackedIngredients.Count; i++)
         {
-            Destroy(stackedIngredients[i].gameObject);
+            bool matched = false;
+            for (int x = 0; x < sandwichCreator.ingredientGoal.Count; x++)
+            {
+                if (sandwichCreator.ingredientGoal[x] == stackedIngredients[i].ingredientType)
+                {
+                    matched = true;
+                    sandwichCreator.ingredientGoal.RemoveAt(x);
+                    break;
+                }
+            }
+
+            // Score up if matched
+            if (matched)
+            {
+                score += 100;
+            }
+            else
+            {
+                score -= 50;
+            }
+        }
+
+        foreach (Ingredient ingredient in stackedIngredients)
+        {
+            Destroy(ingredient.gameObject);
         }
 
         this.GetComponent<BoxCollider2D>().enabled = true;
-
+        // Remake the required sandwich
+        sandwichCreator.CreateSandwich();
         return score;
     }
 

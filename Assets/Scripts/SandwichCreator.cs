@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class SandwichCreator : MonoBehaviour
 {
-    /*[SerializeField] */List<Ingredient.Type> ingredientGoal = new List<Ingredient.Type>();
+    public List<Ingredient.Type> ingredientGoal = new List<Ingredient.Type>();
     [SerializeField] RectTransform panelTransform = null;
     [SerializeField] GameObject ingredientUI = null;
     IngredientSpawner ingredientSpawner = null;
@@ -16,11 +16,18 @@ public class SandwichCreator : MonoBehaviour
 
     }
 
-    void CreateSandwich()
+    public void CreateSandwich()
     {
+        // Reset things - Gaige
+        ingredientGoal.RemoveRange(0, ingredientGoal.Count);
+        foreach (Transform panelChild in panelTransform.transform)
+        {
+            Destroy(panelChild.gameObject);
+        }
+
         ingredientGoal.Add(Ingredient.Type.BREAD);
         //random stuff
-        int numIngredients = 3;// Random.Range(3, 6);
+        int numIngredients = Random.Range(3, 6);
         for (int i = 0; i < numIngredients; i++)
         {
             Ingredient.Type ingredient = (Ingredient.Type)Random.Range(1, ((int)Ingredient.Type.CHEESE) + 1);
@@ -52,7 +59,7 @@ public class SandwichCreator : MonoBehaviour
             }
             //this height might need to be calculated in a different way if the height of each prefab ends up different.
 
-            go.transform.position += new Vector3(0, i * 50, 0);
+            go.transform.position += new Vector3(0, i * 90, 0);
 
         }
     }
