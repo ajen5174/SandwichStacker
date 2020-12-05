@@ -15,7 +15,8 @@ public class Ingredient : MonoBehaviour
         CHICKEN,
         CHEESE,
         LUNCHMEAT,
-        PICKLE
+        PICKLE,
+        TOP_BREAD
     };
 
     public Type ingredientType;

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class ChefController : MonoBehaviour
@@ -10,6 +11,7 @@ public class ChefController : MonoBehaviour
     float moveSpeed = 20f;
 
     [SerializeField] SandwichCreator sandwichCreator = null;
+    [SerializeField] TextMeshProUGUI scoreText = null;
 
     void Start()
     {
@@ -27,7 +29,7 @@ public class ChefController : MonoBehaviour
             dirX = Input.GetAxis("Horizontal") * moveSpeed;
         }
 
-        transform.position = new Vector2(Mathf.Clamp(transform.position.x, -7.5f, 7.5f), transform.position.y);
+        transform.position = new Vector2(Mathf.Clamp(transform.position.x, -5f, 5f), transform.position.y);
 
 
         // Check for sandwich completion
@@ -40,7 +42,8 @@ public class ChefController : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log("Score: " + CalculateScore());
+            int.TryParse(scoreText.text, out int score);
+            scoreText.text = (score + CalculateScore()).ToString();
         }
     }
 
