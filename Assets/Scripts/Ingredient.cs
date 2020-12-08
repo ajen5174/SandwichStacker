@@ -45,11 +45,11 @@ public class Ingredient : MonoBehaviour
         GameObject collidedObject = collision.gameObject;
         Ingredient ingredient = collidedObject.GetComponent<Ingredient>();
         BoxCollider2D boxCollider = collidedObject.GetComponent<BoxCollider2D>();
+        landingSound.Play();
 
         //Make sure collision is above
         if (collidedObject.transform.position.y - boxCollider.bounds.extents.y >= this.transform.position.y + this.GetComponent<BoxCollider2D>().bounds.extents.y)
         {
-            landingSound.Play();
             if (Mathf.Abs(transform.position.x - collidedObject.transform.position.x) < this.GetComponent<BoxCollider2D>().bounds.extents.x + 0.1f)
             {
                 collidedObject.transform.parent = this.transform;
