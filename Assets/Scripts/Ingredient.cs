@@ -23,6 +23,15 @@ public class Ingredient : MonoBehaviour
 
     [HideInInspector] public Vector3 stackedOffset = Vector3.zero;
 
+    AudioSource landingSound = null;
+
+    private void Start()
+    {
+        landingSound = gameObject.AddComponent<AudioSource>();
+        AudioClip clip = Resources.Load<AudioClip>("Audio/landing");
+        landingSound.clip = clip;
+    }
+
     private void Update()
     {
         if (stackedOffset != Vector3.zero)
@@ -40,6 +49,7 @@ public class Ingredient : MonoBehaviour
         //Make sure collision is above
         if (collidedObject.transform.position.y - boxCollider.bounds.extents.y >= this.transform.position.y + this.GetComponent<BoxCollider2D>().bounds.extents.y)
         {
+            landingSound.Play();
             if (Mathf.Abs(transform.position.x - collidedObject.transform.position.x) < this.GetComponent<BoxCollider2D>().bounds.extents.x + 0.1f)
             {
                 collidedObject.transform.parent = this.transform;

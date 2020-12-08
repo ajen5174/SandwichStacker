@@ -10,10 +10,13 @@ public class ChefController : MonoBehaviour
     float moveSpeed = 20f;
 
     [SerializeField] SandwichCreator sandwichCreator = null;
-
+    AudioSource submitChimeSound = null;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        submitChimeSound = gameObject.AddComponent<AudioSource>();
+        submitChimeSound.volume = 0.07f;
+        submitChimeSound.clip = Resources.Load<AudioClip>("Audio/chime");
     }
 
     void Update()
@@ -35,11 +38,13 @@ public class ChefController : MonoBehaviour
         {
             if (Input.acceleration.z > 0.5f)
             {
+                submitChimeSound.Play();
                 CalculateScore();
             }
         }
         else if (Input.GetKeyDown(KeyCode.Space))
         {
+            submitChimeSound.Play();
             Debug.Log("Score: " + CalculateScore());
         }
     }
