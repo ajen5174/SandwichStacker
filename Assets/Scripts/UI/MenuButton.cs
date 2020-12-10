@@ -48,7 +48,9 @@ public class MenuButton : MonoBehaviour
 
     public void LeaderBoardButtonClicked()
     {
-        Instantiate(Resources.Load("Prefabs/LeaderboardPanel"), GetComponentInParent<Canvas>().gameObject.transform);
+        //Instantiate(Resources.Load("Prefabs/LeaderboardPanel"), GetComponentInParent<Canvas>().gameObject.transform);
+        SceneManager.LoadScene("ScoreBoard");
+
     }
 
     public void EasyButtonClicked()
@@ -78,7 +80,7 @@ public class MenuButton : MonoBehaviour
     public void QuitGameClicked()
 	{
         //switch back to main menu
-        Screen.orientation = ScreenOrientation.Portrait;
+        Screen.orientation = ScreenOrientation.LandscapeLeft;
         SceneManager.LoadScene("MainMenu");
     }
 
