@@ -8,12 +8,17 @@ public class SandwichCreator : MonoBehaviour
     public List<Ingredient.Type> ingredientGoal = new List<Ingredient.Type>();
     [SerializeField] RectTransform panelTransform = null;
     [SerializeField] GameObject ingredientUI = null;
+    [SerializeField] AudioSource backgroundMusic = null;
     IngredientSpawner ingredientSpawner = null;
     void Start()
     {
         ingredientSpawner = GetComponent<IngredientSpawner>();
         CreateSandwich();
-
+        if (backgroundMusic.isPlaying)
+        {
+            backgroundMusic.Stop();
+            backgroundMusic.Play();
+        }
     }
 
     public void CreateSandwich()
