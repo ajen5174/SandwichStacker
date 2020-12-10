@@ -55,8 +55,10 @@ public class ChefController : MonoBehaviour
                 CalculateScore();
                 if (sandwichesComplete == sandwichesToCompleteToEndGame)
                 {
+                    ingredientSpawner.isPaused = true;
                     int.TryParse(scoreText.text, out int totalScore);
                     AddScoreToLeaderBoard(totalScore);
+                    Instantiate(Resources.Load<GameObject>("Prefabs/OrdersComplete"), parentCanvas.transform);
                 }
             }
         }
