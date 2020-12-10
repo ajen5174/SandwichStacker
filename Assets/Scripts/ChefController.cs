@@ -42,7 +42,8 @@ public class ChefController : MonoBehaviour
             if (Input.acceleration.z > 0.5f)
             {
                 submitChimeSound.Play();
-                CalculateScore();
+                int.TryParse(scoreText.text, out int score);
+                scoreText.text = (score + CalculateScore()).ToString();
             }
         }
         else if (Input.GetKeyDown(KeyCode.Space))
