@@ -42,9 +42,10 @@ public class IngredientSpawner : MonoBehaviour
     {
         Ingredient ingredient = null;
         // Get the needed ingredients 75% of the time
-        if (UnityEngine.Random.Range(0, 100) > 75)
+        if (UnityEngine.Random.Range(0, 100) < 75)
         {
-            int index = (int) sandwichCreator.ingredientGoal[UnityEngine.Random.Range(0, sandwichCreator.ingredientGoal.Count)];
+            int goalIndex = UnityEngine.Random.Range(0, sandwichCreator.ingredientGoal.Count);
+            int index = (int) sandwichCreator.ingredientGoal[goalIndex];
             ingredient = ingredients[index];
         }
         else
