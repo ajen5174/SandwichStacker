@@ -9,8 +9,13 @@ public class ChefController : MonoBehaviour
     float dirX;
     float dirZ;
     float moveSpeed = 20f;
+    private float timeSinceLastSubmit = 0.0f;
+    private int sandwichesComplete = 0;
+    int sandwichesToCompleteToEndGame = 3;
+    [SerializeField] Canvas parentCanvas = null;
 
     [SerializeField] SandwichCreator sandwichCreator = null;
+    [SerializeField] IngredientSpawner ingredientSpawner = null;
     AudioSource submitChimeSound = null;
 
     [SerializeField] TextMeshProUGUI scoreText = null;
@@ -24,6 +29,7 @@ public class ChefController : MonoBehaviour
 
     void Update()
     {
+        timeSinceLastSubmit += Time.deltaTime;
         if (Application.platform == RuntimePlatform.Android)
         {
             dirX = Input.acceleration.x * moveSpeed;
@@ -39,19 +45,62 @@ public class ChefController : MonoBehaviour
         // Check for sandwich completion
         if (Application.platform == RuntimePlatform.Android)
         {
-            if (Input.acceleration.z > 0.5f)
+            if (Input.acceleration.z > 0.5f && timeSinceLastSubmit > 1.0f)
             {
+                sandwichesComplete++;
+                timeSinceLastSubmit = 0.0f;
                 submitChimeSound.Play();
+                int.TryParse(scoreText.text, out int score);
+                scoreText.text = (score + CalculateScore()).ToString();
                 CalculateScore();
+                if (sandwichesComplete == sandwichesToCompleteToEndGame)
+                {
+                    int.TryParse(scoreText.text, out int totalScore);
+                    AddScoreToLeaderBoard(totalScore);
+                }
             }
         }
         else if (Input.GetKeyDown(KeyCode.Space))
         {
-
+            sandwichesComplete++;
             submitChimeSound.Play();
             int.TryParse(scoreText.text, out int score);
             scoreText.text = (score + CalculateScore()).ToString();
+            if(sandwichesComplete == sandwichesToCompleteToEndGame)
+            {
+                ingredientSpawner.isPaused = true;
+                int.TryParse(scoreText.text, out int totalScore);
+                AddScoreToLeaderBoard(totalScore);
+                Instantiate(Resources.Load<GameObject>("Prefabs/OrdersComplete"), parentCanvas.transform);
+            }
+
         }
+    }
+
+    void AddScoreToLeaderBoard(int score)
+    {
+        int[] savedScores = { PlayerPrefs.GetInt("score1"), PlayerPrefs.GetInt("score2"), PlayerPrefs.GetInt("score3"), PlayerPrefs.GetInt("score4"), PlayerPrefs.GetInt("score5") };
+
+        for(int i = 0; i < savedScores.Length; i++)
+        {
+            if(score > savedScores[i])
+            {
+                for(int j = i; j < savedScores.Length; j++)
+                {
+                    string toStore = "score" + (j+1);
+                    if(j == i)
+                    {
+                        PlayerPrefs.SetInt(toStore, score);
+                    }
+                    else
+                    {
+                        PlayerPrefs.SetInt(toStore, savedScores[j-i]);
+                    }
+                }
+                break;
+            }
+        }
+
     }
 
     void FixedUpdate()

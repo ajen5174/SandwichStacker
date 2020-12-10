@@ -505,7 +505,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &778914169
 RectTransform:
   m_ObjectHideFlags: 0
@@ -794,7 +794,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08f8c8d0de1d9524e9938e5f43f2e19c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parentCanvas: {fileID: 1351273619}
   sandwichCreator: {fileID: 1608986356}
+  ingredientSpawner: {fileID: 1608986354}
   scoreText: {fileID: 849515361}
 --- !u!61 &938593277
 BoxCollider2D:
@@ -1395,6 +1397,8 @@ MonoBehaviour:
   - {fileID: 3902981343163412211, guid: bb0cbd068e18b8a45bbf9ffb31526be7, type: 3}
   - {fileID: 3902981343163412211, guid: 6aa31c8f084652248aa266d2937d2f2c, type: 3}
   spawnSpeed: 2
+  isPaused: 0
+  sandwichCreator: {fileID: 1608986356}
 --- !u!4 &1608986355
 Transform:
   m_ObjectHideFlags: 0
