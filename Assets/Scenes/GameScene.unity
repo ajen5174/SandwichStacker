@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 3
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: e21ebec8b6c72ad49b99ebe7165c4db0, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -1397,8 +1397,8 @@ MonoBehaviour:
   - {fileID: 3902981343163412211, guid: bb0cbd068e18b8a45bbf9ffb31526be7, type: 3}
   - {fileID: 3902981343163412211, guid: 6aa31c8f084652248aa266d2937d2f2c, type: 3}
   spawnSpeed: 2
-  isPaused: 0
   sandwichCreator: {fileID: 1608986356}
+  isPaused: 0
 --- !u!4 &1608986355
 Transform:
   m_ObjectHideFlags: 0
