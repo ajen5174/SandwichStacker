@@ -30,6 +30,7 @@ public class Ingredient : MonoBehaviour
         landingSound = gameObject.AddComponent<AudioSource>();
         AudioClip clip = Resources.Load<AudioClip>("Audio/landing");
         landingSound.clip = clip;
+        landingSound.volume = 0.5f;
     }
 
     private void Update()
